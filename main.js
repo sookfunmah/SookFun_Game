@@ -54,7 +54,7 @@ const brands = [
 let correct = 0;
 let total = 0;
 const totalDragItems = 5;
-const totalDropBoxes = 3;
+const totalDropBoxes = 5;
 
 const scoreSection = document.querySelector(".score");
 const correctSpan = scoreSection.querySelector(".correct");
@@ -103,6 +103,7 @@ function InitiateGame() {
   `<div class = "drop-boxes">
     <span class = "label" > ${sortRandomDropBoxes[i].Name}</span>
     <span class = "droppable" data-icon = "${sortRandomDropBoxes[i].iconName}"></span>
+    
   </div>`
     )
   }
@@ -157,6 +158,8 @@ function dragLeave(e){
 }
 
 
+
+
 function drop(e){
   e.preventDefault()
   e.target.classList.remove("droppable-hover")
@@ -177,7 +180,6 @@ function drop(e){
       dragElementCheck.setAttribute("draggable","false")
       e.target.innerHTML = `<i class = "fas fa-${dragElemName}" style = "color:${dragElementCheck.style.color}"></i>`
      
-      
       correct++
       console.log(correct)
   }
@@ -189,6 +191,15 @@ function drop(e){
   },100)
 
   if(correct === Math.min(totalDropBoxes,totalDragItems)){
+    if(correct === total){
+      alert("Congratulations! You Win!");
+      
+    }
+
+    if(total > correct){
+      alert("You Lose! Tough Luck")
+    }
+      
     playAgainBtn.style.display = "block"
     setTimeout(()=>{
       playAgainBtn.classList.add("play-again-btn-entrance")
@@ -197,6 +208,30 @@ function drop(e){
   }
 }
 
+
+
+
+
+//Function when user clicks the button
+playAgainBtn.addEventListener('click', playAgainBtnClik)
+
+function playAgainBtnClik(){
+  playAgainBtn.classList.remove("play-again-btn-entrance");
+  correct = 0;
+  total = 0;
+  dragItemsDisplay.style.opacity = 0 ;
+  dropBoxesDisplay.style.opacity = 0;
+
+  setTimeout(()=>{
+    scoreSection.style.opacity = 0;
+  },100)
+
+  setTimeout(()=>{
+    playAgainBtn.style.display = "none"
+    location.reload()
+  })
+
+}
 
 
 function genRandomArrayIcon(n, originalArray) {
