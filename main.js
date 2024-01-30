@@ -37,12 +37,12 @@ const brands = [
   {
     iconName: "cat",
     Name: "Cat",
-    color: "#aaaaaa",
+    color: "#FFD700",
   },
   {
     iconName: "dove",
     Name: "Dove",
-    color: "#CCCC00",
+    color: "#0000ff",
   },
   {
     iconName: "dragon",
@@ -63,6 +63,10 @@ const playAgainBtn = scoreSection.querySelector("#play-again-btn");
 
 const dragItemsDisplay = document.querySelector(".drag-items");
 const dropBoxesDisplay = document.querySelector(".drop-boxes");
+
+
+const displayNote = document.querySelector("#notificationText")
+
 
 let dragElements;
 let dropElements;
@@ -103,7 +107,6 @@ function InitiateGame() {
   `<div class = "drop-boxes">
     <span class = "label" > ${sortRandomDropBoxes[i].Name}</span>
     <span class = "droppable" data-icon = "${sortRandomDropBoxes[i].iconName}"></span>
-    
   </div>`
     )
   }
@@ -182,7 +185,20 @@ function drop(e){
      
       correct++
       console.log(correct)
-  }
+      audio.src = "./audio/win.wav"
+      audio.addEventListener("loadeddata", ()=>{ 
+        audio.play()
+  })
+  } else if (!correctMatch) {
+    audio.src = "./audio/error.mp3"
+    audio.addEventListener("loadeddata", ()=>{ 
+    audio.play()
+    })
+}
+  
+
+ 
+
   scoreSection.style.opacity = 0 ;
   setTimeout(()=>{
     correctSpan.innerHTML = correct;
@@ -192,12 +208,21 @@ function drop(e){
 
   if(correct === Math.min(totalDropBoxes,totalDragItems)){
     if(correct === total){
-      alert("Congratulations! You Win!");
-      
+      // alert("Congratulations! You Win!");
+      displayNote.innerHTML= "Yes, You Win!"
+      //Play the success song
+      audio.src = "./audio/success-trumpet.mp3"
+      audio.addEventListener("loadeddata", ()=>{ 
+      audio.play()
+    })
     }
 
     if(total > correct){
-      alert("You Lose! Tough Luck")
+      displayNote.innerHTML= "Too Bad!  So Sad!  You Lose!"
+      audio.src = "./audio/fail.wav"
+      audio.addEventListener("loadeddata", ()=>{ 
+      audio.play()
+    })
     }
       
     playAgainBtn.style.display = "block"
@@ -208,19 +233,28 @@ function drop(e){
   }
 }
 
-
-
-
-
 //Function when user clicks the button
 playAgainBtn.addEventListener('click', playAgainBtnClik)
+const audio = new Audio()  
 
 function playAgainBtnClik(){
+  console.log("button clicked")
+
+  //Sound effect upon clicking button
+  audio.src = "./audio/place.wav"
+  audio.addEventListener("loadeddata", ()=>{ 
+    audio.play()
+  })
+  console.log("Audio file path:" , audio.src)
+
+
   playAgainBtn.classList.remove("play-again-btn-entrance");
   correct = 0;
   total = 0;
   dragItemsDisplay.style.opacity = 0 ;
   dropBoxesDisplay.style.opacity = 0;
+
+ 
 
   setTimeout(()=>{
     scoreSection.style.opacity = 0;
@@ -229,7 +263,7 @@ function playAgainBtnClik(){
   setTimeout(()=>{
     playAgainBtn.style.display = "none"
     location.reload()
-  })
+  },1000)
 
 }
 
