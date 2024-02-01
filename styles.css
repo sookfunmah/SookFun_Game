@@ -10,6 +10,9 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-color: #eee;
   color: #111;
+  background-image: url("bground.png");
+  background-repeat : no-repeat;
+
 }
 
 
@@ -64,23 +67,29 @@ h1{
 }
 .drag-items {
 
-  margin: 1rem 1rem 1.5rem 1rem;
+  margin: 1.5rem 35rem 1.5rem 35rem;
   transition: opacity 0.5s;
   display: flex;
-  justify-content: center;
+  
+  justify-content: center;   
   align-items: center;
+  background-color: rgb(243, 244, 244, 0.4);
+  border-radius: 50px;
+  
 }
 .draggable {
   height: 5rem;
-  width: 5rem;
+  width: 20%;
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center;  */
+  align-items: center; 
+  justify-content: center;  
   font-size: 4rem;
   font-weight: bold;
-  margin: 0rem 0.5rem;
+  margin: 1rem 0.5rem 0.3rem 0.5rem;
   cursor: move;
   transition: opacity 0.2s;
+ 
+  
 }
 .draggable:hover {
   opacity: 0.5;
@@ -138,33 +147,6 @@ h1{
   opacity: 0.1;
 }
 
-/* Add this to your existing styles.css or create a new one */
-/* .notification-box {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-#notificationText {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-#closeNotificationBtn {
-  padding: 8px 16px;
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-} */
-
 p{
   margin-bottom: 1rem;
   font-size :2rem;
@@ -173,8 +155,26 @@ p{
   color: orangered;
 }
 
-@media (max-width: 600px) {
-  html { font-size: 14px; }
+@media (max-width: 300px) {
+  html { font-size: 10px; }
   #play-again-btn { top: -0.4rem; }
   #play-again-btn.play-again-btn-entrance { transform: translateX(7rem); }
+
+  .draggable{
+    width:10%;
+    display: grid;
+    align-items: center; 
+    justify-content: center;  
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .droppable{
+    width:10%;
+    display: grid;
+    align-items: center; 
+    justify-content: center;  
+    font-size: 2rem;
+    font-weight: bold;
+  }
 }
