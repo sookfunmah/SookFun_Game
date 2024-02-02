@@ -267,6 +267,7 @@ function playAgainBtnClik(){
 
 }
 
+//function to randomly generate the array
 
 function genRandomArrayIcon(n, originalArray) {
   let dummy = [];
@@ -279,3 +280,11 @@ function genRandomArrayIcon(n, originalArray) {
   }
   return dummy;
 }
+
+let theSong = document.getElementById("song")
+let theSongBtn = document.getElementById("songBtn")
+
+theSongBtn.onclick = function(){
+  theSong.play()
+}
+
