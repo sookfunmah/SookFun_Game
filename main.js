@@ -12,7 +12,7 @@ const brands = [
   {
     iconName: "fish",
     Name: "Fish",
-    color: "#333333",
+    color: "#FfA500",
   },
   {
     iconName: "spider",
@@ -48,6 +48,16 @@ const brands = [
     iconName: "dragon",
     Name: "Dragon",
     color: "#d4af37",
+  },
+  {
+    iconName: "dog",
+    Name: "Dog",
+    color: "#Bb00bb",
+  },
+  {
+    iconName: "bug",
+    Name: "Bug",
+    color: " #39ff14",
   },
 ];
 
@@ -129,13 +139,10 @@ function InitiateGame() {
 }
 
 //Events fired on the drop boxes
-
 //gets data  of icon's id when user start dragging in text format
 //e stands for event
 function dragStart(e){
   e.dataTransfer.setData("text",e.target.id)
-  
-
 }
 
 //calls for CSS properties "droppable-hover" when icon is dragged into the box
@@ -208,8 +215,8 @@ function drop(e){
 
   if(correct === Math.min(totalDropBoxes,totalDragItems)){
     if(correct === total){
-      // alert("Congratulations! You Win!");
-      displayNote.innerHTML= "Yes, You Win!"
+      
+      displayNote.innerHTML= "You Win!"
       //Play the success song
       audio.src = "./audio/success-trumpet.mp3"
       audio.addEventListener("loadeddata", ()=>{ 
@@ -281,10 +288,22 @@ function genRandomArrayIcon(n, originalArray) {
   return dummy;
 }
 
-let theSong = document.getElementById("song")
-let theSongBtn = document.getElementById("songBtn")
+//Background music playing with pulsing button
+let theSong = document.getElementById("theSong")
+let theSongBtn = document.getElementById("theSongBtn")
 
 theSongBtn.onclick = function(){
-  theSong.play()
+  if(theSong.paused){
+    theSong.play()
+    theSongBtn.innerHTML= "Pause 🔇"
+    theSongBtn.classList.add("playing"); // Add playing class for animation
+    theSong.volume = 0.1
+  } 
+  else { 
+    theSong.pause()
+    theSongBtn.innerHTML= "PLay ♫"
+    theSongBtn.classList.remove("playing"); // Remove playing class
+  }
+  
 }
 
