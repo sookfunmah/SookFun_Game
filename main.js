@@ -168,8 +168,6 @@ function dragLeave(e){
 }
 
 
-
-
 function drop(e){
   e.preventDefault()
   e.target.classList.remove("droppable-hover")
@@ -203,9 +201,7 @@ function drop(e){
     })
 }
   
-
  
-
   scoreSection.style.opacity = 0 ;
   setTimeout(()=>{
     correctSpan.innerHTML = correct;

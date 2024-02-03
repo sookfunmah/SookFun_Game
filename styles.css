@@ -175,7 +175,7 @@ p{
   text-align: center;
   font-weight: bold;
   color: rgb(189, 37, 146);
-  animation: morph 2s infinite alternate;
+  animation: morph 1s infinite alternate;
 }
 
 /*Music button and Pulsing*/
